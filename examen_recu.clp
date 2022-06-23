@@ -44,3 +44,16 @@
 	(assert (brazo cantidad (+ ?m 1)))
 	(assert (bloque A encima 0 bloque B encima ?b bloque C encima ?c bloque D encima (- ?d 1) bloque E encima ?e))
 )
+
+(defrule desapilar-bloque-A-de-E
+	?f1 <- (bloque A encima 0 bloque B encima ?b bloque C encima ?c bloque D encima ?d bloque E encima ?e)
+	?f2 <- (mesa cantidad ?m)
+	?f3 <- (brazo cantidad ?b)
+		(test (> ?m 0))
+		(test (= ?p 0))
+		(test (<> ?e 0))
+	=>
+	(assert (mesa cantidad (- ?m 1)))
+	(assert (brazo cantidad (+ ?m 1)))
+	(assert (bloque A encima 0 bloque B encima ?b bloque C encima ?c bloque D encima ?d bloque E encima (- ?e 1))
+)
